@@ -1,0 +1,413 @@
+/* Auth & Contact Modal Styles */
+.auth-modal-overlay,
+.contact-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 250ms ease, visibility 250ms ease;
+}
+
+.auth-modal-overlay.active,
+.contact-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.auth-modal-card,
+.contact-modal-card {
+  background: #ffffff;
+  width: min(480px, 92vw);
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  padding: 32px 30px;
+  position: relative;
+  transform: translateY(20px) scale(0.96);
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+}
+
+.auth-modal-overlay.active .auth-modal-card,
+.contact-modal-overlay.active .contact-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.auth-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  color: #888;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+  border-radius: 6px;
+  transition: color 150ms ease;
+}
+
+.auth-close-btn:hover {
+  color: #111;
+}
+
+.auth-modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.auth-modal-subtitle {
+  font-size: 14px;
+  color: #777;
+  text-align: center;
+  margin: 0 0 22px 0;
+}
+
+.auth-tabs {
+  display: flex;
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 22px;
+}
+
+.auth-tab-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #666;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.auth-tab-btn.active {
+  background: #ffffff;
+  color: #111;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.auth-form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.auth-form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.auth-form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.auth-form-group input:focus {
+  outline: none;
+  border-color: #1600ff;
+  box-shadow: 0 0 0 3px rgba(22, 0, 255, 0.12);
+}
+
+.auth-submit-btn {
+  width: 100%;
+  padding: 13px 0;
+  background: #1600ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 180ms ease, transform 150ms ease;
+}
+
+.auth-submit-btn:hover {
+  background: #0e00bd;
+  transform: translateY(-1px);
+}
+
+.auth-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.auth-feedback {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  display: none;
+  text-align: center;
+}
+
+.auth-feedback.error {
+  display: block;
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+.auth-feedback.success {
+  display: block;
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+}
+
+/* User pill styling when logged in */
+.signup.logged-in {
+  background: #059669 !important;
+  color: #ffffff !important;
+  cursor: pointer;
+}
+
+/* =========================================================
+   Contact Details Modal Styling
+   ========================================================= */
+.contact-detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 20px 0 24px;
+  text-align: left;
+}
+
+.contact-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.contact-detail-icon {
+  font-size: 20px;
+  line-height: 1.2;
+  flex: none;
+  margin-top: 2px;
+}
+
+.contact-detail-content {
+  flex: 1;
+}
+
+.contact-detail-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+}
+
+.contact-detail-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.contact-detail-value a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.contact-detail-value a:hover {
+  text-decoration: underline;
+}
+
+.contact-social-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.contact-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.contact-action-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.contact-action-btn.phone {
+  background: #10b981;
+  color: #fff;
+  grid-column: 1 / 3;
+}
+
+.contact-action-btn.linkedin {
+  background: #0a66c2;
+  color: #fff;
+}
+
+.contact-action-btn.instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  color: #fff;
+}
+
+.contact-action-btn.twitter {
+  background: #050505;
+  color: #ffffff;
+  border: 1px solid #333;
+}
+
+.contact-action-btn.website {
+  background: #1e293b;
+  color: #fff;
+  grid-column: 1 / 3;
+}
+
+/* Make social footer circle icons clickable */
+.social a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Legal Links in Footer */
+.legal-links span {
+  cursor: pointer;
+  transition: color 180ms ease, text-decoration 180ms ease;
+}
+
+.legal-links span:hover {
+  color: #1e293b;
+  text-decoration: underline;
+}
+
+/* =========================================================
+   Legal & Policies Modal (Privacy, Terms, Cookies)
+   ========================================================= */
+.legal-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 250ms ease, visibility 250ms ease;
+}
+
+.legal-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.legal-modal-card {
+  background: #ffffff;
+  width: min(620px, 94vw);
+  max-height: 85vh;
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  padding: 32px 30px;
+  position: relative;
+  transform: translateY(20px) scale(0.96);
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.legal-modal-overlay.active .legal-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.legal-tabs {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 4px;
+  margin: 15px 0 10px;
+}
+
+.legal-tab-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.legal-tab-btn.active {
+  background: #ffffff;
+  color: #1e293b;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.legal-modal-body {
+  overflow-y: auto;
+  padding-right: 10px;
+  margin-top: 10px;
+  text-align: left;
+  line-height: 1.6;
+  font-size: 14px;
+  color: #475569;
+}
+
+.legal-modal-body h3 {
+  color: #0f172a;
+  margin: 14px 0 6px;
+  font-size: 15px;
+}
+
+.legal-modal-body p {
+  margin: 0 0 10px;
+}
+
+.legal-modal-body ul {
+  margin: 0 0 12px 18px;
+  padding: 0;
+}
+
+.legal-modal-body li {
+  margin-bottom: 5px;
+}

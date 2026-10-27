@@ -51,6 +51,7 @@
     if(enquiryNumber)document.getElementById('ref-number').textContent=enquiryNumber;
     document.getElementById('copy-ref').addEventListener('click',async()=>{const value=document.getElementById('ref-number').textContent;try{await navigator.clipboard.writeText(value);document.getElementById('copy-note').textContent='Copied'}catch{document.getElementById('copy-note').textContent=value}});
   </script>
+  <script src="api-config.js"></script>
   <script src="auth-modal.js"></script>
 </body></html>
 

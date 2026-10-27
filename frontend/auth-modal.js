@@ -1,9 +1,18 @@
 /**
  * STACKLY IT - Frontend Authentication & Contact Details Controller
- * Connects website to FastAPI backend at http://127.0.0.1:8000
+ * Connects website to the configured FastAPI backend.
  */
 
-const API_BASE_URL = window.STACKLY_API_BASE_URL || 'http://127.0.0.1:8000';
+const API_BASE_URL = (window.STACKLY_API_BASE_URL || '').replace(/\/$/, '');
+
+function showApiUnavailable() {
+  showAuthFeedback(
+    API_BASE_URL
+      ? 'Cannot reach the account service. Please try again later or contact STACKLY IT.'
+      : 'Online account access is not configured for this site yet. Please contact STACKLY IT for assistance.',
+    'error'
+  );
+}
 
 const DEFAULT_COMPANY_DETAILS = {
   company_name: 'STACKLY',
@@ -441,6 +450,11 @@ function initAppModals() {
     const password = document.getElementById('signin-password').value;
     const submitBtn = document.getElementById('signin-submit-btn');
 
+    if (!API_BASE_URL) {
+      showApiUnavailable();
+      return;
+    }
+
     submitBtn.disabled = true;
     submitBtn.textContent = 'Signing in...';
 
@@ -471,7 +485,7 @@ function initAppModals() {
       }, 1000);
 
     } catch (err) {
-      showAuthFeedback('Online account access is unavailable right now. Please contact STACKLY IT for assistance.', 'error');
+      showApiUnavailable();
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Sign In';
@@ -487,6 +501,11 @@ function initAppModals() {
     const email = document.getElementById('signup-email').value.trim();
     const password = document.getElementById('signup-password').value;
     const submitBtn = document.getElementById('signup-submit-btn');
+
+    if (!API_BASE_URL) {
+      showApiUnavailable();
+      return;
+    }
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Creating account...';
@@ -516,7 +535,7 @@ function initAppModals() {
       }, 1200);
 
     } catch (err) {
-      showAuthFeedback('Online account access is unavailable right now. Please contact STACKLY IT for assistance.', 'error');
+      showApiUnavailable();
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Create Account';

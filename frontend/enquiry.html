@@ -97,10 +97,22 @@
           }
         }
       } catch (err) {
-        // Fallback if backend offline
-        const number=`NX-${new Date().getFullYear()}-${String(Math.floor(1000+Math.random()*9000))}`;
-        sessionStorage.setItem('stacklyEnquiryNumber',number);
-        window.location.href='confirmation.html';
+        const emailBody = [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          `Company: ${company}`,
+          `Phone: ${phone}`,
+          `Service: ${subject}`,
+          '',
+          'Requirements:',
+          requirements
+        ].join('\n');
+        alert('The online enquiry service is unavailable. Your email app will open with the enquiry details. Review and send the email to complete your request.');
+        window.location.href = `mailto:hello@stacklyit.com?subject=${encodeURIComponent(`Website enquiry: ${subject}`)}&body=${encodeURIComponent(emailBody)}`;
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit enquiry';
+        }
       }
     }
   </script>

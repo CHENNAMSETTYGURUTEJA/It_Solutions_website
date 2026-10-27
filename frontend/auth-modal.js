@@ -3,7 +3,7 @@
  * Connects website to FastAPI backend at http://127.0.0.1:8000
  */
 
-const API_BASE_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL = window.STACKLY_API_BASE_URL || 'http://127.0.0.1:8000';
 
 const DEFAULT_COMPANY_DETAILS = {
   company_name: 'STACKLY',
@@ -471,7 +471,7 @@ function initAppModals() {
       }, 1000);
 
     } catch (err) {
-      showAuthFeedback('Could not connect to backend server. Make sure FastAPI is running on port 8000.', 'error');
+      showAuthFeedback('Online account access is unavailable right now. Please contact STACKLY IT for assistance.', 'error');
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Sign In';
@@ -516,7 +516,7 @@ function initAppModals() {
       }, 1200);
 
     } catch (err) {
-      showAuthFeedback('Could not connect to backend server. Make sure FastAPI is running on port 8000.', 'error');
+      showAuthFeedback('Online account access is unavailable right now. Please contact STACKLY IT for assistance.', 'error');
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Create Account';
@@ -568,7 +568,8 @@ function initAppModals() {
           }
         }
       } catch (err) {
-        alert('Could not connect to backend server. Make sure FastAPI is running on port 8000.');
+        alert('Online subscription is unavailable. Your email app will open with a subscription request. Review and send it to complete your request.');
+        window.location.href = `mailto:hello@stacklyit.com?subject=${encodeURIComponent('STACKLY IT newsletter subscription')}&body=${encodeURIComponent(`Please subscribe ${email} to STACKLY IT updates.`)}`;
         if (btn) {
           btn.disabled = false;
           btn.textContent = originalBtnText;
